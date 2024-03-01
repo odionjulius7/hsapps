@@ -4,31 +4,31 @@ const { Response } = require("../helpers");
 exports.signUpValidationRules = () => {
   return [
     // username must be an email
-    body("firstName")
+    body("fullName")
       .notEmpty()
       .isAlpha()
       .trim()
       .escape()
-      .withMessage("Please provide your first name"),
-    body("lastName")
-      .notEmpty()
-      .isAlpha()
-      .trim()
-      .escape()
-      .withMessage("Please provide your last name"),
+      .withMessage("Please provide your full name"),
     body("email")
       .notEmpty()
       .isEmail()
       .normalizeEmail()
       .withMessage("Email is required"),
-    body("password")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "i"
-      )
-      .withMessage(
-        "Password should be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
-      ),
+    // body("password")
+    //   .matches(
+    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+    //     "i"
+    //   )
+    // .withMessage(
+    //   "Password should be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+    // ),
+    // body("lastName")
+    // .notEmpty()
+    // .isAlpha()
+    // .trim()
+    // .escape()
+    // .withMessage("Please provide your last name"),
   ];
 };
 
@@ -39,7 +39,8 @@ exports.loginValidationRules = () => {
       .isEmail()
       .normalizeEmail()
       .withMessage("Email is required"),
-    body("password").notEmpty().withMessage("Password is Required"),
+    body("fullName").notEmpty().withMessage("full name is Required"),
+    // body("password").notEmpty().withMessage("Password is Required"),
   ];
 };
 
@@ -109,53 +110,53 @@ exports.roleValidationRules = () => {
 
 exports.resetPasswordValidationRules = () => {
   return [
-    body("oldPassword")
-      .notEmpty()
-      .trim()
-      .escape()
-      .withMessage("Please provide the old password"),
-    body("newPassword")
-      .notEmpty()
-      .trim()
-      .escape()
-      .withMessage("Please provide the new password"),
+    // body("oldPassword")
+    //   .notEmpty()
+    //   .trim()
+    //   .escape()
+    //   .withMessage("Please provide the old password"),
+    // body("newPassword")
+    //   .notEmpty()
+    //   .trim()
+    //   .escape()
+    //   .withMessage("Please provide the new password"),
   ];
 };
 
 exports.passwordValidationRules = () => {
   return [
     // username must be an email
-    body("oldPassword").notEmpty().withMessage("Property name  is required"),
-    body("newPassword")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "i"
-      )
-      .withMessage(
-        "Password should be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
-      ),
+    // body("oldPassword").notEmpty().withMessage("Property name  is required"),
+    // body("newPassword")
+    //   .matches(
+    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+    //     "i"
+    //   )
+    //   .withMessage(
+    //     "Password should be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+    //   ),
   ];
 };
 
 exports.resetValidationRules = () => {
   return [
     // username must be an email
-    body("password")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "i"
-      )
-      .withMessage(
-        "Password should be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
-      ),
-    body("confirmPassword")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "i"
-      )
-      .withMessage(
-        "Password should be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
-      ),
+    // body("password")
+    //   .matches(
+    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+    //     "i"
+    //   )
+    //   .withMessage(
+    //     "Password should be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+    //   ),
+    // body("confirmPassword")
+    //   .matches(
+    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+    //     "i"
+    //   )
+    //   .withMessage(
+    //     "Password should be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+    //   ),
     body("email")
       .notEmpty()
       .isEmail()

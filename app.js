@@ -20,11 +20,12 @@ const blogRoutes = require("./routes/blog");
 const homeGroupRoutes = require("./routes/homegroup");
 const dailyEdgeRoutes = require("./routes/dailyedge");
 const homeRoutes = require("./routes/home");
+const testimonyRoutes = require("./routes/testimony");
 
 // Port
 const port = process.env.PORT || 1000;
 //connection url
-const DB = process.env.MONGODB_URI || "mongodb://localhost/eden";
+const DB = process.env.MONGODB_URI || "mongodb://localhost/eths";
 
 Middleware(app);
 GoogleAuth(app, passport);
@@ -43,6 +44,7 @@ app.use("/api/v1/blog", blogRoutes);
 app.use("/api/v1/homegroup", homeGroupRoutes);
 app.use("/api/v1/dailyedge", dailyEdgeRoutes);
 app.use("/api/v1/home", homeRoutes);
+app.use("/api/v1/testimony", testimonyRoutes);
 
 swagger(app, port);
 
@@ -75,5 +77,5 @@ mongoose
 
 //listening to port
 app.listen(port, () => {
-  console.log(`EDEN Server is running on port ${port}`);
+  console.log(`ETHs Server is running on port ${port}`);
 });

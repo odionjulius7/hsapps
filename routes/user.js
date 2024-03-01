@@ -52,7 +52,7 @@ const token = new Token();
  */
 router.post(
   "/signup",
-  validation.signUpValidationRules(),
+  // validation.signUpValidationRules(),
   validation.validate,
   userController.signUp
 );

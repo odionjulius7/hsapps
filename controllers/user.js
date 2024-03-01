@@ -18,19 +18,20 @@ const mailService = new MailService();
 
 exports.signUp = async (req, res) => {
   try {
-    const { email, firstName } = req.body;
+    const { email, fullName } = req.body;
     const isUserExist = await userService.isUserExist(email);
     if (isUserExist) {
       const response = new Response(true, 409, "This user already exists");
       return res.status(response.code).json(response);
     }
-    const verificationCode = uuidv4().slice(0, 5);
-    req.body.code = verificationCode;
+    // const verificationCode = uuidv4().slice(0, 5);
+    // req.body.code = verificationCode;
     const user = await userService.createUser(req.body);
     const payload = {
       id: user._id,
       role: user.role,
       email: user.email,
+      userId: user.userId,
     };
     const token = await userService.generateToken(payload);
     // await mailService.sendSignupEmail(email, verificationCode, firstName);
@@ -55,16 +56,18 @@ exports.signUp = async (req, res) => {
 
 exports.logIn = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await userService.isUserValid(email, password);
+    // const { email, password } = req.body;
+    const { email, fullName } = req.body;
+    const user = await userService.isUserValid(email, fullName);
     if (!user) {
-      const response = new Response(false, 401, "Incorrect email or password");
+      const response = new Response(false, 401, "Incorrect email or fullName");
       return res.status(response.code).json(response);
     }
     const payload = {
       id: user._id,
       role: user.role,
       email: user.email,
+      userId: user.userId,
     };
     const token = await userService.generateToken(payload);
     const response = new Response(true, 200, "User logged in Successfully", {

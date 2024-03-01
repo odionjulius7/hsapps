@@ -10,8 +10,8 @@ const token = new Token();
 
 router.post(
   "/",
-  //   token.verifyToken,
-  //   auth.authorization("user", "admin"),
+  // token.verifyToken,
+  // auth.authorization("user", "admin"),
   upload.single("image"),
   blogController.createBlog
 );

@@ -11,18 +11,23 @@ module.exports = class UserService {
     return user;
   }
 
-  async isUserValid(email, password) {
+  // async isUserValid(email, password) {
+  async isUserValid(email, fullName) {
     const user = await User.findOne({
       email,
-    }).select("+password");
+    });
+    // .select("+password");
 
     if (!user) {
       return null;
     }
 
-    const checkPassword = await user.correctPassword(user.password, password);
+    // const checkPassword = await user.correctPassword(user.password, password);
 
-    if (!user || !checkPassword) {
+    // if (!user || !checkPassword) {
+    //   return null;
+    // }
+    if (!user) {
       return null;
     }
 
@@ -51,8 +56,11 @@ module.exports = class UserService {
     return newToken;
   }
 
+  // async findUserWithEmail(email) {
+  //   return await User.findOne({ email }).select("+code");
+  // }
   async findUserWithEmail(email) {
-    return await User.findOne({ email }).select("+code");
+    return await User.findOne({ email });
   }
 
   async findUserWithGoogleId(googleId) {
@@ -64,10 +72,12 @@ module.exports = class UserService {
   }
 
   async findUserWithEmailAndGetPassword(email) {
-    return await User.findOne({ email }).select("+password");
+    return await User.findOne({ email });
+    // .select("+password");
   }
 
   async findUserWithIdAndGetPassword(id) {
-    return await User.findOne({ _id: id }).select("+password");
+    return await User.findOne({ _id: id });
+    // .select("+password");
   }
 };
